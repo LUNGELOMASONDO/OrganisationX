@@ -3,19 +3,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OrganisationX.Data
 {
     public class EmployeeRepo : IEmployeeRepo
     {
-        public Employee GetEmployeeById(int id)
+        private readonly EmployeeContext _context;
+
+        public EmployeeRepo(EmployeeContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public Employee GetEmployeeById(int EmployeeNumber)
+        {
+            return _context.Employees.FirstOrDefault(p => p.EmployeeNumber == EmployeeNumber);
         }
 
         public IEnumerable<Employee> GetEmployees()
         {
-            throw new NotImplementedException();
+            return _context.Employees.ToList();
         }
     }
 }
