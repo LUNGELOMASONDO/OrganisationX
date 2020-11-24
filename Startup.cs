@@ -36,6 +36,17 @@ namespace OrganisationX
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+
+            services.AddSwaggerGen(setupAction =>
+            {
+                setupAction.SwaggerDoc(
+                    "LibraryOpenAPISpecification",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    { 
+                        Title = "Organisation X API",
+                        Version = "1"
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +66,17 @@ namespace OrganisationX
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(setupAction => 
+            {
+                setupAction.SwaggerEndpoint(
+                    "/swagger/LibraryOpenAPISpecification/swagger.json",
+                    "Organisation X API"
+                    );
+                setupAction.RoutePrefix = "";
             });
         }
     }
