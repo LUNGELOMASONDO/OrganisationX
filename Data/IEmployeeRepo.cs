@@ -9,6 +9,6 @@ namespace OrganisationX.Data
     public interface IEmployeeRepo
     {
         IEnumerable<Employee> GetEmployees();
-        Employee GetEmployeeById(int id);
+        Employee GetEmployeeByEmployeeNumber(int EmployeeNumber);
     }
 }

@@ -15,7 +15,7 @@ namespace OrganisationX.Data
         {
             _context = context;
         }
-        public Employee GetEmployeeById(int EmployeeNumber)
+        public Employee GetEmployeeByEmployeeNumber(int EmployeeNumber)
         {
             return _context.Employees.FirstOrDefault(p => p.EmployeeNumber == EmployeeNumber);
         }

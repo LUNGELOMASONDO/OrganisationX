@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using OrganisationX.Models;
 using OrganisationX.Data;
+using AutoMapper;
 
 namespace OrganisationX
 {
@@ -31,6 +32,8 @@ namespace OrganisationX
             services.AddDbContext<EmployeeContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("EmployeeConnection")));
 
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IEmployeeRepo, EmployeeRepo>();
         }

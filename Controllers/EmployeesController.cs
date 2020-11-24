@@ -14,9 +14,9 @@ namespace OrganisationX.Controllers
     {
         private readonly IEmployeeRepo _repo;
        
-        public EmployeesController(IEmployeeRepo employee)
+        public EmployeesController(IEmployeeRepo repo)
         {
-            _repo = employee;
+            _repo = repo;
         }
 
         [HttpGet]
@@ -32,10 +32,10 @@ namespace OrganisationX.Controllers
             return Ok(employees);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult <Employee> GetEmployeeById(int id)
+        [HttpGet("{EmployeeNumber}")]
+        public ActionResult <Employee> GetEmployeeById(int EmployeeNumber)
         {
-            var employee = _repo.GetEmployeeById(id);
+            var employee = _repo.GetEmployeeByEmployeeNumber(EmployeeNumber);
             if (employee == null)
             {
                 return NotFound();

@@ -9,7 +9,7 @@ using OrganisationX.Data;
 namespace OrganisationX.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20201123074118_InitialMigration")]
+    [Migration("20201123115201_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
