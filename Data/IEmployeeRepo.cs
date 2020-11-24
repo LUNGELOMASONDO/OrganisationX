@@ -8,7 +8,10 @@ namespace OrganisationX.Data
 {
     public interface IEmployeeRepo
     {
+        bool SaveChanges();
+
         IEnumerable<Employee> GetEmployees();
         Employee GetEmployeeByEmployeeNumber(int EmployeeNumber);
+        void CreateEmployee(Employee emp);
     }
 }

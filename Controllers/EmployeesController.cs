@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using OrganisationX.Models;
 using OrganisationX.Data;
+using AutoMapper;
+using OrganisationX.Dto;
 
 namespace OrganisationX.Controllers
 {
@@ -13,10 +15,12 @@ namespace OrganisationX.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly IEmployeeRepo _repo;
-       
-        public EmployeesController(IEmployeeRepo repo)
+        private readonly IMapper _mapper;
+
+        public EmployeesController(IEmployeeRepo repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -29,11 +33,11 @@ namespace OrganisationX.Controllers
                 return NotFound();
             }
 
-            return Ok(employees);
+            return Ok(_mapper.Map<IEnumerable<EmployeeReadDto>>(employees));
         }
 
         [HttpGet("{EmployeeNumber}")]
-        public ActionResult <Employee> GetEmployeeById(int EmployeeNumber)
+        public ActionResult <EmployeeReadDto> GetEmployeeById(int EmployeeNumber)
         {
             var employee = _repo.GetEmployeeByEmployeeNumber(EmployeeNumber);
             if (employee == null)
@@ -41,7 +45,7 @@ namespace OrganisationX.Controllers
                 return NotFound();
             }
 
-            return Ok(employee);
+            return Ok(_mapper.Map<EmployeeReadDto>(employee));
         }
     }
 }

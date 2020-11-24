@@ -15,6 +15,17 @@ namespace OrganisationX.Data
         {
             _context = context;
         }
+
+        public void CreateEmployee(Employee emp)
+        {
+            if(emp == null)
+            {
+                throw new ArgumentException(nameof(emp));
+            }
+
+            _context.Employees.Add(emp);
+        }
+
         public Employee GetEmployeeByEmployeeNumber(int EmployeeNumber)
         {
             return _context.Employees.FirstOrDefault(p => p.EmployeeNumber == EmployeeNumber);
@@ -23,6 +34,11 @@ namespace OrganisationX.Data
         public IEnumerable<Employee> GetEmployees()
         {
             return _context.Employees.ToList();
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0 );
         }
     }
 }
