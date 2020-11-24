@@ -1,4 +1,5 @@
-﻿using OrganisationX.Models;
+﻿using OrganisationX.Dto;
+using OrganisationX.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

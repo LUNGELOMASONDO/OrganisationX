@@ -11,6 +11,7 @@ namespace OrganisationX.Profiles
             // source -> target
             CreateMap<Employee, EmployeeReadDto>();
             CreateMap<EmployeeCreateDto, Employee>();
+            CreateMap<EmployeeUpdateDto, Employee>();
         }
     }
 }
