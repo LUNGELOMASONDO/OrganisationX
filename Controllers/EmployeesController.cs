@@ -36,7 +36,7 @@ namespace OrganisationX.Controllers
             return Ok(_mapper.Map<IEnumerable<EmployeeReadDto>>(employees));
         }
 
-        [HttpGet("{EmployeeNumber}")]
+        [HttpGet("{EmployeeNumber}", Name="GetEmployeeById")]
         public ActionResult <EmployeeReadDto> GetEmployeeById(int EmployeeNumber)
         {
             var employee = _repo.GetEmployeeByEmployeeNumber(EmployeeNumber);
@@ -46,6 +46,18 @@ namespace OrganisationX.Controllers
             }
 
             return Ok(_mapper.Map<EmployeeReadDto>(employee));
+        }
+
+        [HttpPost]
+        public ActionResult<EmployeeReadDto> CreateEmployee(EmployeeCreateDto employeeCreateDto)
+        {
+            var employeeModel = _mapper.Map<Employee>(employeeCreateDto);
+            _repo.CreateEmployee(employeeModel);
+            _repo.SaveChanges();
+
+            var employeeReadDto = _mapper.Map<EmployeeReadDto>(employeeModel);
+
+            return CreatedAtRoute(nameof(GetEmployeeById), new { employeeNumber = employeeReadDto.EmployeeNumber }, employeeReadDto );
         }
     }
 }

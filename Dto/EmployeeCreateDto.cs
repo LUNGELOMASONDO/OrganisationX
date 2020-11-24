@@ -1,33 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OrganisationX.Models
+namespace OrganisationX.Dto
 {
-    public class Employee
+    public class EmployeeCreateDto
     {
-        //Employee
         public bool? Attrition { get; set; }
-        [StringRange(AllowableValues = new[] { "Travel_Rarely", "Travel_Frequently", "Non-Travel" }, ErrorMessage = "BusinessTravel must be either 'Travel_Rarely', 'Travel_Frequently' or 'Non-Travel'.")]
+        [StringRange(AllowableValues = new[] { "Travel_Rarely", "Travel_Frequently", "Non-Travel", null }, ErrorMessage = "BusinessTravel must be either 'Travel_Rarely', 'Travel_Frequently' or 'Non-Travel'.")]
         public string? BusinessTravel { get; set; }
         public int? DailyRate { get; set; }
-        [StringRange(AllowableValues = new[] { "Human Resources", "Sales", "Research & Development" }, ErrorMessage = "Department must be either must be either 'Yes or 'No'.")]
+        [StringRange(AllowableValues = new[] { "Human Resources", "Sales", "Research & Development", null }, ErrorMessage = "Department must be either must be either 'Yes or 'No'.")]
         public string? Department { get; set; }
-        [Required]
         public int DistanceFromeHome { get; set; }
-        [Required]
         public string Education { get; set; }
-        [Required]
         public string EducationField { get; set; }
         //public int EmployeeCount { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public int EmployeeNumber { get; set; }
         public int? EnvironmentSatisfaction { get; set; }
-        [Required]
         public string Gender { get; set; }
         public int? HourlyRate { get; set; }
         public int? JobInvolvement { get; set; }

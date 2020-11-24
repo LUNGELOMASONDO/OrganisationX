@@ -8,7 +8,9 @@ namespace OrganisationX.Profiles
     {
         public EmployeesProfile()
         {
+            // source -> target
             CreateMap<Employee, EmployeeReadDto>();
+            CreateMap<EmployeeCreateDto, Employee>();
         }
     }
 }
